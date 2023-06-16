@@ -99,3 +99,15 @@ https://github.com/westd5/FeastFeed/projects
 
 ## GitHub Project Link
 [https://github.com/westd5/FeastFeed](https://github.com/westd5/FeastFeed)
+
+## Github/Enivornment Overview
+We are using Eclipse Java Enterprise IDE and Github desktop for version control.
+
+For instructions on installing the IDE there is a video titled "Install Eclipse 2023-JAVA 17" in the Module 1 materials.<br>
+https://uc.instructure.com/courses/1609260/pages/module-1-%7C-materials?module_item_id=69395177
+
+GitHub Desktop can be installed using the link provided below.<br>
+https://desktop.github.com/
+
+For instructions on commiting/pushing to Github there is a video titled "How to Commit and Push your Project to GitHub" in the Module 3 materials.<br>
+https://uc.instructure.com/courses/1609260/pages/module-3-%7C-materials?module_item_id=69395193
