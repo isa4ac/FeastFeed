@@ -86,7 +86,7 @@ Shown above, there are four packages:
       -	When they add/edit a recipe.
 
 ## Scrum Board Link
-https://github.com/westd5/ProjectIT4045C/projects
+https://github.com/westd5/FeastFeed/projects
 
 ## Scrum Roles
 ### UI Specialist 
@@ -98,4 +98,4 @@ https://github.com/westd5/ProjectIT4045C/projects
  - Daniel West
 
 ## GitHub Project Link
-https://github.com/westd5/ProjectIT4045C
+[https://github.com/westd5/FeastFeed](https://github.com/westd5/FeastFeed)
