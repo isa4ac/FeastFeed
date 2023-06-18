@@ -15,21 +15,16 @@ public class FeastfeedController {
 	@Autowired
 	private IUserService userServiceStub;
 	
-	@RequestMapping("/start")
-	public String start() {
-		return "start";
-	}
-	
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
 	}
 	
-	@RequestMapping(value="/start", method=RequestMethod.GET)
+	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String read(Model model) {
 		UserDTO userDTO = userServiceStub.fetchById(01);
 		model.addAttribute("userDTO", userDTO);
-		return "start";
+		return "index";
 	}
 }
 

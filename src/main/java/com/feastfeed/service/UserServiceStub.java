@@ -24,7 +24,7 @@ public class UserServiceStub implements IUserService {
 		
 		return userDTO;
 	}
-	
+	 
 	@Override
 	public void save(UserDTO specimenDTO) {
 		
