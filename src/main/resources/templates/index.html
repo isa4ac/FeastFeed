@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.thymeleaf.org">
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Demo Home</title>
@@ -7,5 +7,15 @@
 	<body>
 		<h1>FeastFeed Home/Index Screen</h1>
 		<h2 th:text="${userDTO}"/>
+		
+		<form action="@{/saveuser}" object="${userDTO}" method="GET">
+			First Name: <input type="text" name="firstname" field="*{firstName}"/><br/>
+			Last Name: 	<input type="text" name="lastname" 	field="*{lastName}"/><br/>
+			Username: 	<input type="text" name="userName" 	field="*{userName}"/><br/>
+			Email: 		<input type="text" name="email" 	field="*{email}"/><br/>
+			Password: 	<input type="text" name="password" 	field="*{password}"/><br/>
+			Bio:		<input type="text" name="bio" 		field="*{bio}"/><br/>
+			<button name="submit" type="submit" value="0">Create Account</button>
+		</form>
 	</body>
 </html>
