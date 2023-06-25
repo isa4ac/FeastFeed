@@ -1,7 +1,11 @@
 package com.feastfeed.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import com.feastfeed.dto.RecipeDTO;
 import com.feastfeed.dto.UserDTO;
 
 @Component
@@ -28,5 +32,30 @@ public class UserServiceStub implements IUserService {
 	@Override
 	public void save(UserDTO specimenDTO) {
 		
+	}
+
+	@Override
+	public List<RecipeDTO> fetchRecipies(String searchTerm) {
+		// stub out recipe fetch mechanism
+		List<RecipeDTO> matchingRecipies = new ArrayList<RecipeDTO>();
+		
+		if (searchTerm.contains("Peanut Butter") || searchTerm.contains("Jelly")) {
+			RecipeDTO recipe = new RecipeDTO();
+			ArrayList<String> stepsList = new ArrayList<>();
+			stepsList.add("PB&J Step 1");
+			stepsList.add("PB&J Step 2");
+			ArrayList<String> ingredientsList = new ArrayList<>();
+			ingredientsList.add("Peanut Butter");
+			ingredientsList.add("Jelly");
+			ingredientsList.add("Bread");
+			recipe.setRecipeId(999);
+			recipe.setRecipeTitle("Peanut Butter & Jelly");
+			recipe.setRecipeIngredients(ingredientsList);
+			recipe.setRecipeSteps(stepsList);
+			
+			matchingRecipies.add(recipe);
+		}
+		
+		return matchingRecipies;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RecipeDTO {
 
 	private int recipeId;
+	private int authorUserId;
 	private String recipeTitle;
 	private ArrayList<String> recipeIngredients;
 	private ArrayList<String> recipeSteps;
@@ -14,6 +15,12 @@ public class RecipeDTO {
 	}
 	public void setRecipeId(int recipeId) {
 		this.recipeId = recipeId;
+	}
+	public int getAuthorUserId() {
+		return authorUserId;
+	}
+	public void setAuthorUserId(int authorUserId) {
+		this.authorUserId = authorUserId;
 	}
 	public String getRecipeTitle() {
 		return recipeTitle;

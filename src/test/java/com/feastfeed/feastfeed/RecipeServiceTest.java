@@ -1,14 +1,13 @@
 package com.feastfeed.feastfeed;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -74,7 +73,7 @@ public class RecipeServiceTest {
 	}
 
 	private void thenFeastFeedReturnsZeroResults() {
-		assertEquals("Number of recipes returned", 0, recipes.size());
+		assertEquals(0, recipes.size());
 		
 	}
 

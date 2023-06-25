@@ -1,25 +1,29 @@
 package com.feastfeed.feastfeed;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 public class JUnitAnnotationExamples {
 	
-	@BeforeClass
+	@BeforeAll
 	public static void setupEverything() {
 		int i = 1+1;
 	}
 	
-	@Before
+	@BeforeEach
 	public void setupBeforeEachTest() {
 		int i = 1+1;
 	}
@@ -39,18 +43,18 @@ public class JUnitAnnotationExamples {
 		assertTrue(4 == 2+2);
 	}
 	
-	@Ignore
+	@JsonIgnore
 	@Test
 	public void runFailTests() {
 		fail();
 	}
 	
-	@AfterClass
+	@AfterAll
 	public static void teardownEverything() {
 		int i = 1+1;
 	}
 	
-	@After
+	@AfterEach
 	public void teardownBeforeEachTest() {
 		int i = 1+1;
 	}
