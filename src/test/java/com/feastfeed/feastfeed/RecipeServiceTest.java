@@ -7,7 +7,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,10 +31,14 @@ public class RecipeServiceTest {
 	@MockBean
 	private IRecipeDAO recipeDAO;
 	
-	//@BeforeClass 
-	//public void setup() {
-		//recipeService.set
-	//}
+	@BeforeEach
+	public void setup() throws Exception {
+		RecipeDTO recipe = new RecipeDTO();
+		recipe.setRecipeTitle("Example Recipe Title");
+		recipe.setRecipeId(14);
+		Mockito.when(recipeDAO.save(recipe)).thenReturn(true);
+		recipeService.setRecipeDAO(recipeDAO);
+	}
 	
 	@Test
 	public void saveRecipe_whenRecipeEntered() {
@@ -46,6 +53,7 @@ public class RecipeServiceTest {
 		RecipeDTO recipeDTO = recipes.get(0);
 		recipe.setRecipeId(recipeDTO.getRecipeId());
 		recipe.setRecipeTitle("Example Recipe Title");
+		recipe.setRecipeId(14);
 	}
 
 	private void whenUserSearchesForRecipe() {
@@ -55,8 +63,8 @@ public class RecipeServiceTest {
 
 	private void thenRecipeIsSaved() {
 		try {
-			recipeService.save(recipe);
-			assertTrue(true);
+			boolean result = recipeService.save(recipe);
+			assertTrue(result);
 		}catch (Exception e) {
 			fail();
 		}
@@ -70,6 +78,32 @@ public class RecipeServiceTest {
 		whenTheUserSearchesForJunk();
 		thenFeastFeedReturnsZeroResults();
 		
+	}
+	
+	@Test
+	public void fetchPlants_validateResultsForJelly() {
+		givenUserIsLoggedIntoFeastFeed();
+		whenTheUserSearchesForJelly();
+		thenFeastFeedReturnsJelly();
+		
+	}
+
+	private void thenFeastFeedReturnsJelly() {
+		boolean jellyFound = false;
+		for (RecipeDTO recipeDTO : recipes) {
+			//in his video he checks all parts of his DTO, not just the title
+			//but to do this he uses .getCommon() and for some reason I can't use that method
+			//maybe because recipeDTO has ArrayLists instead of just strings
+			//so this is only searching by title. subject to change
+			if (recipeDTO.getRecipeTitle().contains("Jelly")) {
+				jellyFound = true;
+			}
+		}
+		assertTrue(jellyFound);
+	}
+
+	private void whenTheUserSearchesForJelly() {
+		recipes = recipeService.fetchRecipes("Jelly");		
 	}
 
 	private void thenFeastFeedReturnsZeroResults() {

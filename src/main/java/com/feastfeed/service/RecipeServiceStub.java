@@ -40,6 +40,32 @@ public class RecipeServiceStub implements IRecipeService {
 	}
 	
 	@Override
+	public IRecipeDAO getRecipeDAO() {
+		return recipeDAO;
+	}
+
+	@Override
+	public void setRecipeDAO(IRecipeDAO recipeDAO) {
+		this.recipeDAO = recipeDAO;
+	}
+
+	public ArrayList<String> getStepsList() {
+		return stepsList;
+	}
+
+	public void setStepsList(ArrayList<String> stepsList) {
+		this.stepsList = stepsList;
+	}
+
+	public ArrayList<String> getIngredientsList() {
+		return ingredientsList;
+	}
+
+	public void setIngredientsList(ArrayList<String> ingredientsList) {
+		this.ingredientsList = ingredientsList;
+	}
+
+	@Override
 	public boolean save(RecipeDTO recipeDTO) throws Exception {
 		boolean result = recipeDAO.save(recipeDTO);
 		return result;
