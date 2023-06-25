@@ -1,5 +1,6 @@
 package com.feastfeed;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,8 @@ public class FeastfeedController {
 		return "start";
 	}
 	
-	@RequestMapping (value="/addRecipe", method=RequestMethod.GET)
-	public String addRecipe(Model model, @RequestParam(value="recipeTitle", required=false, defaultValue = "") String recipeTitle) 
+	@RequestMapping (value="/addrecipe", method=RequestMethod.GET)
+	public String addRecipe(Model model, @RequestParam(value="recipeTitle", required=false, defaultValue = "defaultValue") String recipeTitle) 
 	{
 		RecipeDTO recipeDTO = recipeService.fetchById(1);
 		recipeDTO.setRecipeTitle(recipeTitle);
@@ -75,7 +76,7 @@ public class FeastfeedController {
 	public String searchRecipes(@RequestParam(value="searchTerm", required=false, defaultValue = "") String searchTerm) 
 	{
 		String enhancedTerm = searchTerm + "";
-		recipeService.fetchRecipes(searchTerm);
+		List<RecipeDTO> fetchRecipes = recipeService.fetchRecipes(searchTerm);
 		return "start";
 	}
 	

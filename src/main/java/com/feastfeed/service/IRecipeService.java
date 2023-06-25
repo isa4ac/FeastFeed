@@ -2,6 +2,7 @@ package com.feastfeed.service;
 
 import java.util.List;
 
+import com.feastfeed.dao.IRecipeDAO;
 import com.feastfeed.dto.RecipeDTO;
 
 public interface IRecipeService {
@@ -11,5 +12,9 @@ public interface IRecipeService {
 	boolean save(RecipeDTO recipeDTO) throws Exception;
 
 	List<RecipeDTO> fetchRecipes(String string);
+
+	void setRecipeDAO(IRecipeDAO recipeDAO);
+
+	IRecipeDAO getRecipeDAO();
 
 }

@@ -40,4 +40,14 @@ public class RecipeDTO {
 		return recipeId + " " + recipeTitle + " " + recipeIngredients + " " + recipeSteps;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		//assumes they don't match
+		boolean returnValue = false;
+		if (obj instanceof RecipeDTO) {
+			RecipeDTO incomingRecipe = (RecipeDTO) obj;
+			returnValue = incomingRecipe.getRecipeId() == getRecipeId();
+		}
+		return returnValue;
+	}
 }
