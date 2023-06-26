@@ -11,11 +11,10 @@ public class UserDTO {
 	private String email;
 	private String password;
 	private String bio;
-//	private ArrayList<UserDTO> friends;
+	private ArrayList<Integer> recipeIDs;
+	private ArrayList<Integer> likedRecipeIDs;
 //	private ArrayList<UserDTO> followers;
 //	private ArrayList<UserDTO> following;
-	// user's recipes ArrayList object here
-	// user's LIKED recipes ArrayList object here
 	
 	public int getUserId() {
 		return userId;
@@ -69,9 +68,54 @@ public class UserDTO {
 		this.bio = bio;
 	}
 
+	public ArrayList<Integer> getRecipeIDs() {
+		return recipeIDs;
+	}
+
+	public void setRecipeIDs(ArrayList<Integer> recipeIDs) {
+		this.recipeIDs = recipeIDs;
+	}
+	
+	public void addRecipeID(Integer recipeID) {
+		if (this.recipeIDs != null) {
+			this.recipeIDs.add(recipeID);
+		} else {
+			this.recipeIDs = new ArrayList<Integer>();
+			this.recipeIDs.add(recipeID);
+		}
+	}
+
+	public ArrayList<Integer> getLikedRecipeIDs() {
+		return likedRecipeIDs;
+	}
+
+	public void setLikedRecipeIDs(ArrayList<Integer> likedRecipeIDs) {
+		this.likedRecipeIDs = likedRecipeIDs;
+	}
+	
+	public void addLikedRecipeID(Integer recipeID) {
+		if (this.likedRecipeIDs != null) {
+			this.likedRecipeIDs.add(recipeID);
+		} else {
+			this.likedRecipeIDs = new ArrayList<Integer>();
+			this.likedRecipeIDs.add(recipeID);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return userId + " " + firstName + " " + lastName + " " + userName;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// assume they don't match
+		boolean returnValue = false;
+		if (obj instanceof UserDTO) {
+			UserDTO incomingUser = (UserDTO) obj;
+			returnValue = incomingUser.getUserId() == getUserId();
+		}
+		return returnValue;
 	}
 	
 }

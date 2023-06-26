@@ -3,13 +3,17 @@ package com.feastfeed.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.feastfeed.dao.IUserDAO;
 import com.feastfeed.dto.RecipeDTO;
 import com.feastfeed.dto.UserDTO;
 
 @Component
 public class UserServiceStub implements IUserService {
+	
+	private IUserDAO userDAO;
 
 	@Override
 	public UserDTO fetchById(int id) { // currently, will just make a new user named bob with the passed id
@@ -30,8 +34,9 @@ public class UserServiceStub implements IUserService {
 	}
 	 
 	@Override
-	public void save(UserDTO specimenDTO) {
-		
+	public boolean save(UserDTO userDTO) throws Exception {
+		boolean result = userDAO.save(userDTO);
+		return result;
 	}
 
 	@Override
@@ -57,5 +62,15 @@ public class UserServiceStub implements IUserService {
 		}
 		
 		return matchingRecipies;
+	}
+
+	@Override
+	public IUserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	@Override
+	public void setUserDAO(IUserDAO userDAO) {
+		this.userDAO = userDAO;
 	}
 }

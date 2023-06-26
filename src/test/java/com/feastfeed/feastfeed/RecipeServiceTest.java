@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -31,7 +31,7 @@ public class RecipeServiceTest {
 	@MockBean
 	private IRecipeDAO recipeDAO;
 	
-	@BeforeEach
+	@BeforeAll
 	public void setup() throws Exception {
 		RecipeDTO recipe = new RecipeDTO();
 		recipe.setRecipeTitle("Example Recipe Title");
@@ -65,7 +65,7 @@ public class RecipeServiceTest {
 		try {
 			boolean result = recipeService.save(recipe);
 			assertTrue(result);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			fail();
 		}
 		
