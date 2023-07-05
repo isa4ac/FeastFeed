@@ -65,17 +65,21 @@ public class FeastfeedController {
 	
 	@RequestMapping (value="/start", method=RequestMethod.GET, headers= {"content-type=text/json"})
 	@ResponseBody
-	public RecipeDTO readRecipeJSON(Model model) {
+	public RecipeDTO 	JSON(Model model) {
 		RecipeDTO recipeDTO = recipeService.fetchById(1);
 		model.addAttribute("recipeDTO", recipeDTO);
 		return recipeDTO;
 		
 	}
 	
-	@RequestMapping(value="/start", method=RequestMethod.GET)
-	public String readRecipe(Model model) {
-		model.addAttribute("recipeDTO", new RecipeDTO());
-		return "start";
+	@RequestMapping (value="/readrecipe", method=RequestMethod.GET)
+	public String readRecipe(Model model) 
+	{
+		
+		RecipeDTO recipeDTO = recipeService.fetchById(1);
+		model.addAttribute("recipeDTO", recipeDTO);
+//		model.addAttribute("recipeDTO", new RecipeDTO());
+		return "readrecipe";
 	}
 	
 	@RequestMapping (value="/addrecipe", method=RequestMethod.GET)
@@ -84,11 +88,12 @@ public class FeastfeedController {
 		RecipeDTO recipeDTO = recipeService.fetchById(1);
 		recipeDTO.setRecipeTitle(recipeTitle);
 		model.addAttribute("recipeDTO", recipeDTO);
-		return "start";
-	}
+		return "addrecipe";
+	} 
 	
 	@RequestMapping (value="/saverecipe")
-	public String saveRecipe(RecipeDTO recipeDTO) {
+	public String saveRecipe(RecipeDTO recipeDTO) 
+	{
 		recipeDTO.setRecipeId(12);
 		return "start";
 	}
