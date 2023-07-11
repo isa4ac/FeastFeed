@@ -1,5 +1,6 @@
 package com.feastfeed.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class RecipeServiceStub implements IRecipeService {
 	private IRecipeDAO recipeDAO;
 	
 	ArrayList<String> stepsList = new ArrayList<>();
-	ArrayList<String> ingredientsList = new ArrayList<>();
+	ArrayList<Ingredient> ingredientsList = new ArrayList<>();
 	
 	@Override
 	public RecipeDTO fetchById(int id) {
@@ -23,11 +24,26 @@ public class RecipeServiceStub implements IRecipeService {
 		recipeDTO.setRecipeId(1);
 		recipeDTO.setRecipeTitle("Make a Peanut Butter and Jelly Sandwich");
 		
-		ingredientsList.add("bread");
-		ingredientsList.add("peanut butter");
-		ingredientsList.add("jelly");
+		Ingredient bread = new Ingredient();
+		bread.setName("bread");
+		bread.setUnitCount(2);
+		bread.setUnitName("slices");
 		
-		recipeDTO.setRecipeIngredients(ingredientsList);
+		Ingredient peanutButter = new Ingredient();
+		bread.setName("peanut butter");
+		bread.setUnitCount(2);
+		bread.setUnitName("tablespoons");
+		
+		Ingredient jelly = new Ingredient();
+		bread.setName("jelly");
+		bread.setUnitCount(2);
+		bread.setUnitName("tablespoons");
+		
+		ingredientsList.add(bread);
+		ingredientsList.add(peanutButter);
+		ingredientsList.add(jelly);
+		
+		recipeDTO.setIngredients(ingredientsList);
 		
 		stepsList.add("Get two slices of bread");
 		stepsList.add("Spread  thin layer of peanut butter on one");
@@ -57,11 +73,11 @@ public class RecipeServiceStub implements IRecipeService {
 		this.stepsList = stepsList;
 	}
 
-	public ArrayList<String> getIngredientsList() {
+	public ArrayList<Ingredient> getIngredientsList() {
 		return ingredientsList;
 	}
 
-	public void setIngredientsList(ArrayList<String> ingredientsList) {
+	public void setIngredientsList(ArrayList<Ingredient> ingredientsList) {
 		this.ingredientsList = ingredientsList;
 	}
 
@@ -80,7 +96,7 @@ public class RecipeServiceStub implements IRecipeService {
 			RecipeDTO recipe = new RecipeDTO();
 			recipe.setRecipeTitle("Make a Peanut Butter and Jelly Sandwich");
 			recipe.setRecipeSteps(stepsList);
-			recipe.setRecipeIngredients(ingredientsList);
+			recipe.setIngredients(ingredientsList);
 			matchingRecipes.add(recipe);
 		}
 		return matchingRecipes;
