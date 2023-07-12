@@ -5,18 +5,18 @@
 		<title>Demo Home</title>
 	</head>
 	<body>
-		<form action ="#" th:action="@{/searchrecipes}" method="GET">
+		    <form action ="#" th:action="@{/searchrecipes}" method="GET">
 			Welcome to FeastFeed!
 			<input type="text" name="searchTerm"/>
 			<button name="submit" type="submit" value="0">Search</button>
 		</form>
 		<br></br>
 					
-		Your recipe is: <p th:text="${recipeDTO}"/>
+		 Your recipe is: <p th:text="${recipeDTO}"/>
 		
 		<form action = "#" th:action="@{/saverecipe}" th:object="${recipeDTO}" method="GET">
 			Title: <input type="text" name="recipeTitle" th:field="*{recipeTitle}"/><br/>
-			Ingredients: <input type="text" name="recipeIngredients" th:field="*{recipeIngredients}"/><br/>
+			Ingredients: <input type="text" name="recipeIngredients" th:field="*{recipeIngredients}"/><br/>	
 			Steps: <input type="text" name="recipeSteps" th:field="*{recipeSteps}"/><br/>
 			Recipe: <input type="text" name="recipeId" th:field="*{recipeId}"/><br/>
 			<button name="submit" type="submit" value="0">Submit</button>

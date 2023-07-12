@@ -49,29 +49,16 @@ public class UserServiceStub implements IUserService {
 			ArrayList<String> stepsList = new ArrayList<>();
 			stepsList.add("PB&J Step 1");
 			stepsList.add("PB&J Step 2");
-			ArrayList<Ingredient> ingredientsList = new ArrayList<>();
-			Ingredient bread = new Ingredient();
-			bread.setName("bread");
-			bread.setUnitCount(2);
-			bread.setUnitName("slices");
 			
-			Ingredient peanutButter = new Ingredient();
-			bread.setName("peanut butter");
-			bread.setUnitCount(2);
-			bread.setUnitName("tablespoons");
+			ArrayList<String> ingredientsList = new ArrayList<>();
 			
-			Ingredient jelly = new Ingredient();
-			bread.setName("jelly");
-			bread.setUnitCount(2);
-			bread.setUnitName("tablespoons");
-			
-			ingredientsList.add(bread);
-			ingredientsList.add(peanutButter);
-			ingredientsList.add(jelly);
+			ingredientsList.add("bread");
+			ingredientsList.add("peanut butter");
+			ingredientsList.add("jelly");
 			
 			recipe.setRecipeId(999);
 			recipe.setRecipeTitle("Peanut Butter & Jelly");
-			recipe.setIngredients(ingredientsList);
+			recipe.setRecipeIngredients(ingredientsList);
 			recipe.setRecipeSteps(stepsList);
 			
 			matchingRecipies.add(recipe);

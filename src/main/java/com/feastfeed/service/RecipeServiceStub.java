@@ -16,7 +16,7 @@ public class RecipeServiceStub implements IRecipeService {
 	private IRecipeDAO recipeDAO;
 	
 	ArrayList<String> stepsList = new ArrayList<>();
-	ArrayList<Ingredient> ingredientsList = new ArrayList<>();
+	ArrayList<String> ingredientsList = new ArrayList<>();
 	
 	@Override
 	public RecipeDTO fetchById(int id) {
@@ -24,26 +24,11 @@ public class RecipeServiceStub implements IRecipeService {
 		recipeDTO.setRecipeId(1);
 		recipeDTO.setRecipeTitle("Make a Peanut Butter and Jelly Sandwich");
 		
-		Ingredient bread = new Ingredient();
-		bread.setName("bread");
-		bread.setUnitCount(2);
-		bread.setUnitName("slices");
+		ingredientsList.add("bread");
+		ingredientsList.add("peanut butter");
+		ingredientsList.add("jelly");
 		
-		Ingredient peanutButter = new Ingredient();
-		bread.setName("peanut butter");
-		bread.setUnitCount(2);
-		bread.setUnitName("tablespoons");
-		
-		Ingredient jelly = new Ingredient();
-		bread.setName("jelly");
-		bread.setUnitCount(2);
-		bread.setUnitName("tablespoons");
-		
-		ingredientsList.add(bread);
-		ingredientsList.add(peanutButter);
-		ingredientsList.add(jelly);
-		
-		recipeDTO.setIngredients(ingredientsList);
+		recipeDTO.setRecipeIngredients(ingredientsList);
 		
 		stepsList.add("Get two slices of bread");
 		stepsList.add("Spread  thin layer of peanut butter on one");
@@ -73,11 +58,11 @@ public class RecipeServiceStub implements IRecipeService {
 		this.stepsList = stepsList;
 	}
 
-	public ArrayList<Ingredient> getIngredientsList() {
+	public ArrayList<String> getIngredientsList() {
 		return ingredientsList;
 	}
 
-	public void setIngredientsList(ArrayList<Ingredient> ingredientsList) {
+	public void setIngredientsList(ArrayList<String> ingredientsList) {
 		this.ingredientsList = ingredientsList;
 	}
 
@@ -96,7 +81,7 @@ public class RecipeServiceStub implements IRecipeService {
 			RecipeDTO recipe = new RecipeDTO();
 			recipe.setRecipeTitle("Make a Peanut Butter and Jelly Sandwich");
 			recipe.setRecipeSteps(stepsList);
-			recipe.setIngredients(ingredientsList);
+			recipe.setRecipeIngredients(ingredientsList);
 			matchingRecipes.add(recipe);
 		}
 		return matchingRecipes;

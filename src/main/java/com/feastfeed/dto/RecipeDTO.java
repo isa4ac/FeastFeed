@@ -2,22 +2,25 @@ package com.feastfeed.dto;
 
 import java.util.ArrayList;
 
-import com.feastfeed.service.Ingredient;
-
 public class RecipeDTO {
 
 	private int recipeId;
 	private int authorUserId;
 	private String recipeTitle;
-	private ArrayList<Ingredient> ingredients;
+	private ArrayList<String> recipeIngredients;
 	private ArrayList<String> recipeSteps;
-	private String ingredientNames;
 	
 	public int getRecipeId() {
 		return recipeId;
 	}
 	public void setRecipeId(int recipeId) {
 		this.recipeId = recipeId;
+	}
+	public ArrayList<String> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+	public void setRecipeIngredients(ArrayList<String> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
 	}
 	public int getAuthorUserId() {
 		return authorUserId;
@@ -31,12 +34,7 @@ public class RecipeDTO {
 	public void setRecipeTitle(String recipeTitle) {
 		this.recipeTitle = recipeTitle;
 	}
-	public ArrayList<Ingredient> getIngredients() {
-		return ingredients;
-	}
-	public void setIngredients(ArrayList<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
+	
 	public ArrayList<String> getRecipeSteps() {
 		return recipeSteps;
 	}
@@ -46,16 +44,7 @@ public class RecipeDTO {
 	
 	@Override
 	public String toString() {
-		return recipeId + " " + recipeTitle + " " + ingredientsToString() + " " + recipeSteps;
-	}
-	
-	public String ingredientsToString() {
-		ingredientNames = null;
-		for (int i = 0; i < ingredients.size(); i++) {
-			Ingredient ing = ingredients.get(i);
-			ingredientNames.concat(ing.getName());
-		}
-		return ingredientNames;
+		return recipeId + " " + recipeTitle + " " + getRecipeIngredients() + " " + recipeSteps;
 	}
 	
 	@Override
