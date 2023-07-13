@@ -1,7 +1,12 @@
 package com.feastfeed;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,8 +93,9 @@ public class FeastfeedController {
 	}
 	
 	@RequestMapping (value="/saverecipe")
-	public String saveRecipe(RecipeDTO recipeDTO) {
-		recipeDTO.setRecipeId(12);
+	public String saveRecipe(RecipeDTO recipeDTO) throws IOException {
+		//recipeDTO.setRecipeId(12);
+		saveRecipeToFile(recipeDTO);
 		return "start";
 	}
 	
@@ -108,6 +114,53 @@ public class FeastfeedController {
 		requestParams.get("searchTerm");
 		return "start";
 	}
+	
+	public void saveRecipeToFile(RecipeDTO recipeDTO) throws IOException {
+		
+		//put all elements of current recipeDTO into an ArrayList of 
+		//type string to be saved in text file
+		
+		ArrayList<String> recipeDataLines = new ArrayList<>();
+		String id = "" + recipeDTO.getRecipeId();
+		String ingredients = "";
+		String steps = "";
+		
+		for(int i = 0; i < recipeDTO.getRecipeIngredients().size(); i++)
+		{
+		    ingredients += "" + recipeDTO.getRecipeIngredients().get(i) + " | ";
+		}
+		
+		for(int i = 0; i < recipeDTO.getRecipeSteps().size(); i++)
+		{
+		    steps += "" + recipeDTO.getRecipeSteps().get(i) + " | ";
+		}
+		
+		recipeDataLines.add(recipeDTO.getRecipeTitle());
+		recipeDataLines.add(id);
+		recipeDataLines.add(ingredients);
+		recipeDataLines.add(steps);
+		recipeDataLines.add(" ");
+		
+		//write them into savedRecipes
+		
+		FileWriter writer = new FileWriter("savedRecipes.txt", true); 
+		//the true parameter sets the filewriter to append mode, 
+		//which adds to the file without erasing the data previously in it
+		
+		for(String str: recipeDataLines) {
+		  try {
+			writer.write(str + System.lineSeparator());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
+		writer.close();
+	}
+	
+	
+	
 	
 }
 
