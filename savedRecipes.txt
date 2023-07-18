@@ -1,30 +1,15 @@
-Another test title
-12
-some more ingredeints, blah blah, 
-cool step wow, 
- 
-test 2 title
-12
-jelly beans, ham, 
-swag steps, swag step, 
- 
-hopefully final test title
-12
-dgews
-hte
- 
-another one
-12
-a foodanother foodanother one
-a stepanother steplook another step
- 
-formatting test title
-12
-a food | another food | another one | 
-a step | another step | look another step | 
- 
-another test for id title
-5
-a food | another food | another one | 
-a step | another step | look another step | 
- 
+json test title
+1
+ing 1 | ing 2 | ing 3 | 
+step 1 | step 2 | 
+
+json test title 2
+2
+ing 1 | ing 2 | ing 3 | 
+step 1 | step 2 | 
+
+json test title 3
+3
+ing 1 | ing2 | ing 3 | 
+step 1 | step 2 | step 3 | 
+

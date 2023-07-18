@@ -1,8 +1,13 @@
 package com.feastfeed;
 
+import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -117,46 +122,56 @@ public class FeastfeedController {
 	
 	public void saveRecipeToFile(RecipeDTO recipeDTO) throws IOException {
 		
-		//put all elements of current recipeDTO into an ArrayList of 
-		//type string to be saved in text file
-		
-		ArrayList<String> recipeDataLines = new ArrayList<>();
-		String id = "" + recipeDTO.getRecipeId();
-		String ingredients = "";
-		String steps = "";
-		
-		for(int i = 0; i < recipeDTO.getRecipeIngredients().size(); i++)
-		{
-		    ingredients += "" + recipeDTO.getRecipeIngredients().get(i) + " | ";
-		}
-		
-		for(int i = 0; i < recipeDTO.getRecipeSteps().size(); i++)
-		{
-		    steps += "" + recipeDTO.getRecipeSteps().get(i) + " | ";
-		}
-		
-		recipeDataLines.add(recipeDTO.getRecipeTitle());
-		recipeDataLines.add(id);
-		recipeDataLines.add(ingredients);
-		recipeDataLines.add(steps);
-		recipeDataLines.add(" ");
-		
-		//write them into savedRecipes
-		
-		FileWriter writer = new FileWriter("savedRecipes.txt", true); 
-		//the true parameter sets the filewriter to append mode, 
-		//which adds to the file without erasing the data previously in it
-		
-		for(String str: recipeDataLines) {
-		  try {
-			writer.write(str + System.lineSeparator());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		
-		writer.close();
+	    // Save to text file savedRecipes.txt
+	    FileWriter textFileWriter = new FileWriter("savedRecipes.txt", true);
+	    //true parameter makes the recipes append to the previous data instead of overriding it
+	    
+	    textFileWriter.write(recipeDTO.getRecipeTitle() + System.lineSeparator());
+	    textFileWriter.write(recipeDTO.getRecipeId() + System.lineSeparator());
+	    
+	    for (String ingredient : recipeDTO.getRecipeIngredients()) {
+	        textFileWriter.write(ingredient + " | ");
+	    }
+	    
+	    textFileWriter.write(System.lineSeparator());
+	    
+	    for (String step : recipeDTO.getRecipeSteps()) {
+	        textFileWriter.write(step + " | ");
+	    }
+	    
+	    textFileWriter.write(System.lineSeparator());
+	    textFileWriter.write(System.lineSeparator());
+	    
+	    textFileWriter.close();
+
+	    // Save to JSON file savedRecipes.json
+	    //if no file exists, file is created.
+	    File jsonFile = new File("savedRecipes.json");
+	    if (!jsonFile.exists()) {
+	        jsonFile.createNewFile();
+	    }
+
+	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    List<RecipeDTO> recipeList;
+
+	    //if file already exists, json data is read from that file and added
+	    //to a list. Then the new recipeDTO is appended to the old data in the same list.
+	    //all old data in file is overidden and replaced with new list of recipeDTOs
+	    //resulting in updated json file with new recipeDTO
+	    try (Reader reader = new FileReader(jsonFile)) {
+	        Type recipeListType = new TypeToken<List<RecipeDTO>>() {}.getType();
+	        recipeList = gson.fromJson(reader, recipeListType);
+	        if (recipeList == null) {
+	            recipeList = new ArrayList<>();
+	        }
+	    }
+
+	    recipeList.add(recipeDTO);
+
+	    try (Writer writer = new FileWriter(jsonFile)) {
+	        gson.toJson(recipeList, writer);
+	    }
+	    
 	}
 	
 	
