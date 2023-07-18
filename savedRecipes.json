@@ -1,0 +1,45 @@
+[
+  {
+    "recipeId": 1,
+    "authorUserId": 0,
+    "recipeTitle": "json test title",
+    "recipeIngredients": [
+      "ing 1",
+      "ing 2",
+      "ing 3"
+    ],
+    "recipeSteps": [
+      "step 1",
+      "step 2"
+    ]
+  },
+  {
+    "recipeId": 2,
+    "authorUserId": 0,
+    "recipeTitle": "json test title 2",
+    "recipeIngredients": [
+      "ing 1",
+      "ing 2",
+      "ing 3"
+    ],
+    "recipeSteps": [
+      "step 1",
+      "step 2"
+    ]
+  },
+  {
+    "recipeId": 3,
+    "authorUserId": 0,
+    "recipeTitle": "json test title 3",
+    "recipeIngredients": [
+      "ing 1",
+      "ing2",
+      "ing 3"
+    ],
+    "recipeSteps": [
+      "step 1",
+      "step 2",
+      "step 3"
+    ]
+  }
+]
