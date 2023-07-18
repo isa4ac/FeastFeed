@@ -38,24 +38,26 @@
 		</nav>
 		
 		<div id="rootContainer">
-		   <h1 id="bannerHeader" class="p-5  rounded-3">Your recipe is: <span style="color: #28262c;" th:text="${recipeDTO.recipeTitle}"></span></h1>
-		   <div class="customCard card border-dark mb3">
-				<div class="card-header">
-					<h2> Recipe Details: </h2>
-				</div>
-				<div class="card-body">
-					<div class="customCard card card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
-						<h3 class="card-text" >Ingredients:</h3>
-						<ul th:each="ingredient : ${recipeDTO.recipeIngredients}">
-							<li class="card-text" th:text="${ingredient}"></li>
-						</ul>
+			<div class="flex-column col-6">
+			   <h1 id="bannerHeader" class="p-5  rounded-3">How To: <span style="color: #28262c;" th:text="${recipeDTO.recipeTitle}"></span></h1>
+			   <div class="customCard card border-dark mb3">
+					<div class="card-header">
+						<h2> Recipe Details: </h2>
 					</div>
-					<div class="customCard card  card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
-						<h3 class="card-text" style="color: #28262c;">Steps:</h3>
-						<ol>
-							<li th:each="steps : ${recipeDTO.recipeSteps}" th:text="${steps}"></li>
-						</ol>
-					</div> 
+					<div class="card-body">
+						<div class="customCard card card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
+							<h3 class="card-text" >Ingredients:</h3>
+							<ul th:each="ingredient : ${recipeDTO.recipeIngredients}">
+								<li class="card-text" th:text="${ingredient}"></li>
+							</ul>
+						</div>
+						<div class="customCard card  card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
+							<h3 class="card-text" style="color: #28262c;">Steps:</h3>
+							<ol>
+								<li th:each="steps : ${recipeDTO.recipeSteps}" th:text="${steps}"></li>
+							</ol>
+						</div> 
+					</div>
 				</div>
 			</div>
 		</div>

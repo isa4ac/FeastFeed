@@ -39,11 +39,12 @@ body{
 #rootContainer{
 	display: flex;
 	flex-direction: row;
-	margin: 5vw;
+	margin: 1vw;
+	margin-top: 2vh;
+	justify-content: center;
 }
 
 #bannerHeader{
-	margin-right: 5vw;
 	margin-bottom: 0;
 	width: auto;
 	display: grid;
