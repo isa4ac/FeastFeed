@@ -82,6 +82,14 @@ public class FeastfeedController {
 		return "readrecipe";
 	}
 	
+	@RequestMapping (value="/register", method=RequestMethod.GET)
+	public String registerAccount(Model model) 
+	{
+		
+//		model.addAttribute("recipeDTO", new RecipeDTO());
+		return "register";
+	}
+	
 	@RequestMapping (value="/addrecipe", method=RequestMethod.GET)
 	public String addRecipe(Model model, @RequestParam(value="recipeTitle", required=false, defaultValue = "defaultValue") String recipeTitle) 
 	{
