@@ -51,8 +51,14 @@ public class FeastfeedController {
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String read(Model model) {
+		return homePage(model);
+//		return "start";
+	}
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String homePage(Model model) {
 		model.addAttribute("userDTO", new UserDTO());
-		return "index";
+		return "home";
 	}
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET, headers={"content-type=text/json"})
