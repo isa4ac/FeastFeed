@@ -5,8 +5,10 @@
 		<title>Feast Feed</title>
 		<!-- Latest compiled and minified CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="readrecipe.css">	
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<link rel="stylesheet" th:href="@{/readrecipe.css}">	
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
@@ -15,22 +17,22 @@
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#togglerData" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
-		    <a class="navbar-brand mb-0 h1" href="#" style="color: #fdf6e3;">FeastFeed</a>
+		    <a class="navbar-brand mb-0 h1" th:href="@{/}" style="color: #fdf6e3;">FeastFeed</a>
 		    <div class=" navbar-collapse" id="togglerData" style="justify-content: space-between;">
 		    <ul class="navbar-nav mr-auto">
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="#" style="color: #fdf6e3;">Home</a>
+		          <a class="nav-link active" aria-current="page" th:href="@{/}"  style="color: #fdf6e3;">Home</a>
 		        </li>
 		        
 		        <li class="nav-item">
-		          <a class="nav-link" href="#" style="color: #fdf6e3;">Settings</a>
+		          <a class="nav-link disabled" href="#">Settings</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#" style="color: #fdf6e3;">Log Out</a>
+		          <a class="nav-link disabled" href="#" >Log Out</a>
 		        </li>
 		      </ul>
-		      <form class="form-inline my-2 my-lg-0" style="display: flex;">
-		      	<input class="form-control mr-sm-2" style="background-color: blanchedalmond; padding-right:2em;" type="search" placeholder="Search" aria-label="Search">
+		      <form class="form-inline my-2 my-lg-0" style="display: flex;"  th:action="@{/search}" method="get">
+		      	<input class="form-control mr-sm-2" style="background-color: blanchedalmond; padding-right:2em;" type="text" placeholder="Search" aria-label="Search" name="term" required>
 		      	<button class="btn my-2 my-sm-0 searchBtn" type="submit">Go</button> 
 		      </form>
 		    </div>
@@ -39,38 +41,61 @@
 		
 		<div id="rootContainer">
 			<div class="flex-column col-6">
-			   <h1 id="bannerHeader" class="p-5  rounded-3">How To: <span style="color: #28262c;" th:text="${recipeDTO.recipeTitle}"></span></h1>
+			<div class="col-5 p-3 mb-3 rounded-3" id="bannerHeader">
+			   <h1>How To:<br> <span style="color: #28262c;" th:text="${recipe.name}"></span></h1>
+			    <p>Author: <span class="card-text" th:text="${recipe.author}"></span></p>
+			    <div class="d-grid gap-2 col-5 mx-auto">
+			    <a class="btn btn-warning"  th:href="@{/update/{id}(id=${recipe.id})}" role="button">Update</a>
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+				</div>
+	  		</div>
+	  		
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+		        <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <h3>Are you sure you want to delete <span th:text=${recipe.Name}></span> recipe?</h3>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		        <form th:action="@{/recipe/delete/{id}(id=${recipe.Id})}" th:object="${recipe}" method="post">
+		           <input type="hidden" th:csrf="${_csrf}" />
+		        <button type="submit" class="btn btn-danger">Delete</button>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 			   <div class="customCard card border-dark mb3">
 					<div class="card-header">
 						<h2> Recipe Details: </h2>
 					</div>
 					<div class="card-body">
+					<p>Description: </p>
+					<span class="card-text" th:text="${recipe.description}"></span>
 						<div class="customCard card card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
 							<h3 class="card-text" >Ingredients:</h3>
-							<ul th:each="ingredient : ${recipeDTO.recipeIngredients}">
+							<ul th:each="ingredient : ${recipe.ingredients}">
 								<li class="card-text" th:text="${ingredient}"></li>
 							</ul>
 						</div>
 						<div class="customCard card  card-body text-dark" style="margin: 1vw;margin-bottom: 2vw;">
 							<h3 class="card-text" style="color: #28262c;">Steps:</h3>
 							<ol>
-								<li th:each="steps : ${recipeDTO.recipeSteps}" th:text="${steps}"></li>
+								<li th:each="method : ${recipe.method}" th:text="${method}"></li>
 							</ol>
 						</div> 
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--  
-		<form action = "#" th:action="@{/saverecipe}" th:object="${recipeDTO}" method="GET">
-			Title: <input type="text" name="recipeTitle" th:field="*{recipeTitle}"/><br/>
-			Ingredients: <input type="text" name="recipeIngredients" th:field="*{recipeIngredients}"/><br/>
-			Steps: <input type="text" name="recipeSteps" th:field="*{recipeSteps}"/><br/>
-			Recipe: <input type="text" name="recipeId" th:field="*{recipeId}"/><br/>
-			<button name="submit" type="submit" value="0">Submit</button>
-		</form>
-		-->
-		
 		
 	</body>
 </html>
