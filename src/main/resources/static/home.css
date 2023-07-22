@@ -8,23 +8,13 @@
 }
 
 body{
-	/* background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+	
 	background: #fdf6e3;
 	background-size: 400% 400%;
 	height: 100vh;
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+
 
 .customNav{
 	background-color: #57886c;
@@ -65,5 +55,18 @@ body{
 
 .customCard li{
 	font-weight: bold;
+	text-decoration: none;
 }
 
+#pagination-custom  > li{
+	--bs-pagination-bg: #ffffff00 !important;
+	--bs-pagination-active-bg:  #57886c;
+}
+
+#custom-toast{
+	display: block;
+    z-index: 1;
+    position: absolute;
+    margin-top: 7vh;
+    margin-left: 6vw;
+}
