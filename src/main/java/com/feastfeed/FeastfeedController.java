@@ -145,7 +145,7 @@ public class FeastfeedController {
 	    public String updateRecipe(@ModelAttribute RecipeJSONDTO updatedRecipe, RedirectAttributes redirectAttributes) {
 	        recipeJSONService.update(updatedRecipe);
 	        redirectAttributes.addFlashAttribute("success", "Recipe updated successfully.");
-	        return "redirect:/indexsearch"; 
+	        return "redirect:/index"; 
 	    }
 	    
 	    @GetMapping("/create")
